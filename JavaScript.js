@@ -1,9 +1,7 @@
 'use strict';
 
-const n = 300;
-
 // Cria uma matriz de Float64 com n posições valoradas em zero
-function gerarNovaMatriz() {
+function gerarNovaMatriz(n) {
     const novaMatriz = [];
     for (let i = 0; i < n; i++) {
         novaMatriz[i] = new Float64Array(n);
@@ -11,8 +9,8 @@ function gerarNovaMatriz() {
     return novaMatriz;
 }
 
-function multiplicação(matrizA, matrizB) {
-    const matrizResultado = gerarNovaMatriz();
+function multiplicação(matrizA, matrizB, n) {
+    const matrizResultado = gerarNovaMatriz(n);
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
             let mult = 0;
@@ -25,8 +23,8 @@ function multiplicação(matrizA, matrizB) {
     return matrizResultado;
 }
 
-function gerarMatrizPopulada() {
-    const matriz = gerarNovaMatriz();
+function gerarMatrizPopulada(n) {
+    const matriz = gerarNovaMatriz(n);
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
             const numeroSinistro = ((i / n) / n) + ((j / n) / n) + 1;
@@ -39,15 +37,15 @@ function gerarMatrizPopulada() {
 function executar(n) {
     const inicio = new Date();
 
-    const matrizA = gerarMatrizPopulada();
+    const matrizA = gerarMatrizPopulada(n);
 
-    const matrizB = gerarMatrizPopulada();
+    const matrizB = gerarMatrizPopulada(n);
 
-    const resultado = multiplicação(matrizA, matrizB);
+    const resultado = multiplicação(matrizA, matrizB, n);
 
     console.log(`n = ${n} | Tempo de execução é: ${(new Date() - inicio)}ms`);
 }
-executar(10)
+executar(10);
 executar(100);
 executar(200);
 executar(300);
